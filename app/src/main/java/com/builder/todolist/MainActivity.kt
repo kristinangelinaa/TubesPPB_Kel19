@@ -1,8 +1,8 @@
 package com.builder.todolist
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import android.graphics.Movie
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,11 +13,10 @@ import androidx.room.Room
 import com.builder.todolist.activity.NewTaskActivity
 import com.builder.todolist.adapter.TaskAdapter
 import com.builder.todolist.database.TaskDatabase
-import com.builder.todolist.database.TaskEntity
-import com.builder.todolist.model.Task
+import com.builder.todolist.model.TaskEntity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.task_card.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listTask : List<TaskEntity>
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-
             main_no_task.visibility = View.VISIBLE
             main_recycler_view.visibility = View.GONE
         }
@@ -82,6 +80,10 @@ class MainActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        listTask = database.taskDao().getAllTasks()
+        listTask = database.taskDao().getTodayTasks(today_date_tv.text.toString())
+    }
+
+    companion object {
+        var EXTRA_DATA = ""
     }
 }

@@ -1,10 +1,14 @@
-package com.builder.todolist.database
+package com.builder.todolist.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "tasks")
+@Parcelize
 data class TaskEntity(
 
     @PrimaryKey(autoGenerate = true)
@@ -24,4 +28,4 @@ data class TaskEntity(
 
     @ColumnInfo(name = "isFinished")
     var isFinished: Boolean = false
-)
+): Parcelable

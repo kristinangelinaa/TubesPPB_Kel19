@@ -20,4 +20,8 @@
     <string name="back_logo">Back Logo</string>
     <string name="calendar_logo">Calendar Logo</string>
     <string name="clock_logo">Clock Logo</string>
+    <string name="upcoming_task">Upcoming Task</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="save">Save</string>
+    <string name="mark_as_finished">Mark As Finished</string>
 </resources>

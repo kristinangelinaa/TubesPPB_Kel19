@@ -10,11 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NewTaskActivity"
+        <activity android:name=".activity.EditTaskActivity"></activity>
+        <activity
+            android:name=".activity.NewTaskActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

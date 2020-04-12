@@ -10,11 +10,13 @@ import androidx.room.Room
 import com.builder.todolist.MainActivity
 import com.builder.todolist.R
 import com.builder.todolist.database.TaskDatabase
-import com.builder.todolist.database.TaskEntity
+import com.builder.todolist.model.TaskEntity
 import kotlinx.android.synthetic.main.activity_new_task.*
 import java.util.*
 
 class NewTaskActivity : AppCompatActivity() {
+    lateinit var dateSelected: Calendar
+    lateinit var timeSelected: Calendar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,8 @@ class NewTaskActivity : AppCompatActivity() {
             val dataString = android.text.format.DateFormat.format("EEEE, dd MMM yyyy", calendar1)
             create_date_tv.text = dataString
 
+            dateSelected = calendar1
+
         }, year, month, date)
 
         datePickerDialog.show()
@@ -85,6 +89,8 @@ class NewTaskActivity : AppCompatActivity() {
             val dataString = android.text.format.DateFormat.format("HH:mm", calendar1)
             create_time_tv.text = dataString
 
+            timeSelected = calendar1
+
         }, hour, minute, true)
 
         timePickerDialog.show()
@@ -95,7 +101,14 @@ class NewTaskActivity : AppCompatActivity() {
     }
 
     private fun getTaskEntity() : TaskEntity {
-        return TaskEntity(null, task_title_et.text.toString(), create_date_tv.text.toString(), create_time_tv.text.toString(), create_note_et.text.toString(), isFinished = false)
+        return TaskEntity(
+            null,
+            task_title_et.text.toString(),
+            create_date_tv.text.toString(),
+            create_time_tv.text.toString(),
+            create_note_et.text.toString(),
+            isFinished = false
+        )
     }
 
     private fun sendingDataToDatabase() {
