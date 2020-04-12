@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">To Do List</string>
+    <string name="march_31_2020">March 31, 2020</string>
+    <string name="today_task">Today Task</string>
+    <string name="add_new_task">ADD NEW TASK</string>
+    <string name="create_new_task">Create \nNew Task</string>
+    <string name="task_title">Task Title</string>
+    <string name="create_task">CREATE TASK</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="sat_31_march_2001">Sat, 31 March 2001</string>
+    <string name="select_the_date">Select The Date</string>
+    <string name="select_the_time">Select The Time</string>
+    <string name="time">Time</string>
+    <string name="send_notification">Send Notification</string>
+    <string name="no_task">No Task</string>
+    <string name="you_don_t_have_any_task_for_today">You Don\'t \nHave Any \nTask For \nToday :)</string>
+    <string name="note">Note</string>
+    <string name="add_some_notes_here">Add Some Notes Here</string>
+    <string name="back_logo">Back Logo</string>
+    <string name="calendar_logo">Calendar Logo</string>
+    <string name="clock_logo">Clock Logo</string>
+</resources>

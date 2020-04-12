@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewTaskActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/back_logo" />
+
+        <TextView
+            android:id="@+id/new_task_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_semibold"
+            android:layout_marginStart="24dp"
+            android:text="@string/create_new_task"
+            android:textColor="#000"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+
+        <TextView
+            android:id="@+id/_create_title_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_medium"
+            android:text="@string/title"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_task_tv" />
+
+        <EditText
+            android:id="@+id/task_title_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_regular"
+            android:hint="@string/task_title"
+            android:maxLines="2"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/_create_title_task"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/create_date_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_medium"
+            android:text="@string/date"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_title_et" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_select_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_date_task">
+
+            <ImageView
+                android:id="@+id/btn_calendar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="2"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_date_range_black_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
+                android:contentDescription="@string/calendar_logo" />
+
+            <TextView
+                android:id="@+id/create_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:background="@drawable/bg_text_date"
+                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:layout_marginStart="38dp"
+                android:fontFamily="@font/p_light"
+                android:text="@string/select_the_date"
+                android:textColor="#000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/btn_calendar"
+                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_medium"
+            android:text="@string/time"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_select_date" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_select_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_time">
+
+            <ImageView
+                android:id="@+id/btn_time"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="2"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_access_time_black_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
+                android:contentDescription="@string/clock_logo" />
+
+            <TextView
+                android:id="@+id/create_time_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:background="@drawable/bg_text_date"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/p_light"
+                android:text="@string/select_the_time"
+                android:layout_marginStart="38dp"
+                android:textColor="#000"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/btn_calendar"
+                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
+                tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notes_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/p_medium"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="16sp"
+            android:text="@string/note"
+            android:textColor="#000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_select_time" />
+
+        <EditText
+            android:id="@+id/create_note_et"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notes_text"
+            android:hint="@string/add_some_notes_here"
+            android:fontFamily="@font/p_regular"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btn_create_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/p_semibold"
+            android:text="@string/create_task"
+            android:textColor="#FFF"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_note_et" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
