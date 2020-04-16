@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.activity_new_task.*
 import java.util.*
 
 class NewTaskActivity : AppCompatActivity() {
-    lateinit var dateSelected: Calendar
-    lateinit var timeSelected: Calendar
+    private lateinit var dateSelected: Calendar
+    private lateinit var timeSelected: Calendar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,8 +104,8 @@ class NewTaskActivity : AppCompatActivity() {
         return TaskEntity(
             null,
             task_title_et.text.toString(),
-            create_date_tv.text.toString(),
-            create_time_tv.text.toString(),
+            dateSelected.timeInMillis.toString(),
+            timeSelected.timeInMillis.toString(),
             create_note_et.text.toString(),
             isFinished = false
         )

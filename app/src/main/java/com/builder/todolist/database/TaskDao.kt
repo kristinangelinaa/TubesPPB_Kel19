@@ -12,8 +12,8 @@ interface TaskDao {
     @Query("SELECT * FROM tasks")
     fun getAllTasks(): List<TaskEntity>
 
-    @Query("SELECT * FROM tasks WHERE date IN(:date)")
-    fun getTodayTasks(date : String) : List<TaskEntity>
+    @Query("SELECT * FROM tasks WHERE date BETWEEN :start and :endOfDay ORDER BY  isFinished ASC, time ASC")
+    fun getTodayTasks(start : String, endOfDay : String) : List<TaskEntity>
 
     @Delete
     fun deleteTask(task: TaskEntity)

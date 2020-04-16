@@ -34,17 +34,18 @@
     <!-- Add RecyclerView Here -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
-        tools:listitem="@layout/task_card"
         android:scrollbars="vertical"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/today_task" />
+        app:layout_constraintTop_toBottomOf="@+id/today_task"
+        tools:listitem="@layout/task_card" />
+
 
     <TextView
         android:id="@+id/main_no_task"

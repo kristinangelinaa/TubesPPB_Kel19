@@ -65,8 +65,9 @@
 
                 <ImageView
                     android:layout_margin="4dp"
+                    android:visibility="gone"
                     android:layout_gravity="right"
-                    android:id="@+id/card_btn_done"
+                    android:id="@+id/card_img_done"
                     android:layout_width="34dp"
                     android:layout_height="34dp"
                     android:src="@drawable/done_logo" />

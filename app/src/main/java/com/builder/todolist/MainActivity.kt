@@ -7,6 +7,7 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
@@ -20,6 +21,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listTask : List<TaskEntity>
+    private val calendar = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,8 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setTitleTime(){
-        val calendar = Calendar.getInstance()
-
         val dataTime = DateFormat.format("EEEE, dd MMM yyy", calendar)
         today_date_tv.text = dataTime
     }
@@ -80,7 +80,24 @@ class MainActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        listTask = database.taskDao().getTodayTasks(today_date_tv.text.toString())
+        val todayStart = Calendar.getInstance()
+        todayStart.set(Calendar.DATE, calendar.get(Calendar.DATE))
+        todayStart.set(Calendar.MONTH, calendar.get(Calendar.MONTH))
+        todayStart.set(Calendar.YEAR, calendar.get(Calendar.YEAR))
+        todayStart.set(Calendar.HOUR_OF_DAY, 0)
+        todayStart.set(Calendar.MINUTE, 0)
+
+        val todayEnd = Calendar.getInstance()
+        todayEnd.set(Calendar.DATE, calendar.get(Calendar.DATE))
+        todayEnd.set(Calendar.MONTH, calendar.get(Calendar.MONTH))
+        todayEnd.set(Calendar.YEAR, calendar.get(Calendar.YEAR))
+        todayEnd.set(Calendar.HOUR_OF_DAY, 23)
+        todayEnd.set(Calendar.MINUTE, 0)
+
+        Log.d("TodayDateStartValue = ", todayStart.timeInMillis.toString())
+        Log.d("TodayDateEndValue = ", todayEnd.timeInMillis.toString())
+
+        listTask = database.taskDao().getTodayTasks(todayStart.timeInMillis.toString(), todayEnd.timeInMillis.toString())
     }
 
     companion object {

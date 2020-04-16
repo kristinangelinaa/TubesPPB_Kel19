@@ -52,17 +52,33 @@ class EditTaskActivity : AppCompatActivity() {
     private fun taskPackage() {
         val taskData = intent.getParcelableExtra<TaskEntity>(EXTRA_DATA)
 
+        val date = Calendar.getInstance()
+        date.timeInMillis = taskData.date.toLong()
+
+        val time = Calendar.getInstance()
+        time.timeInMillis = taskData.time.toLong()
+
+        dateSelected = date
+        timeSelected = time
+
+        val dateString = DateFormat.format("EEEE, dd MMM yyyy", date)
+        val timeString = DateFormat.format("HH:mm", time)
+
         if (taskData != null) {
             edit_title_et.setText(taskData.title)
         }
         if (taskData != null) {
-            edit_date_tv.text = taskData.date
+            edit_date_tv.text = dateString
         }
         if (taskData != null) {
-            edit_time_tv.text = taskData.time
+            edit_time_tv.text = timeString
         }
         if (taskData != null) {
             edit_note_et.setText(taskData.note)
+        }
+
+        if (taskData != null) {
+            edit_checkbox.isChecked = taskData.isFinished
         }
 
     }
@@ -83,10 +99,10 @@ class EditTaskActivity : AppCompatActivity() {
         return TaskEntity(
             taskData?.id,
             edit_title_et.text.toString(),
-            edit_date_tv.text.toString(),
-            edit_time_tv.text.toString(),
+            dateSelected.timeInMillis.toString(),
+            dateSelected.timeInMillis.toString(),
             edit_note_et.text.toString(),
-            isFinished = false
+            edit_checkbox.isChecked
         )
     }
 
