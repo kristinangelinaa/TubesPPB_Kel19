@@ -1,6 +1,5 @@
 package com.builder.todolist.model
 
-import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -28,4 +27,4 @@ data class TaskEntity(
 
     @ColumnInfo(name = "isFinished")
     var isFinished: Boolean = false
-): Parcelable
+) : Parcelable

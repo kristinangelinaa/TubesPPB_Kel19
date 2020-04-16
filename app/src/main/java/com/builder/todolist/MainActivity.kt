@@ -1,14 +1,13 @@
 package com.builder.todolist
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.builder.todolist.activity.NewTaskActivity
@@ -16,12 +15,15 @@ import com.builder.todolist.adapter.TaskAdapter
 import com.builder.todolist.database.TaskDatabase
 import com.builder.todolist.model.TaskEntity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.task_card.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var listTask : List<TaskEntity>
+    private lateinit var listTask: List<TaskEntity>
+    private lateinit var allListTask: List<TaskEntity>
+    private lateinit var allCompletedTask: List<TaskEntity>
+
     private val calendar = Calendar.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         main_recycler_view.layoutManager = layoutManager
 
         SetTaskData().execute()
+        GetAllTaskSize().execute()
+        GetCompletedTask().execute()
 
         btn_new_task.setOnClickListener {
             val intent = Intent(this, NewTaskActivity::class.java)
@@ -40,7 +44,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setTitleTime(){
+
+    private fun setTitleTime() {
         val dataTime = DateFormat.format("EEEE, dd MMM yyy", calendar)
         today_date_tv.text = dataTime
     }
@@ -48,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("StaticFieldLeak")
     internal inner class SetTaskData : AsyncTask<Void, Void, Unit>() {
         override fun doInBackground(vararg p0: Void?) {
-            return getAllTasks()
+            return getTodayTasks()
         }
 
         override fun onPostExecute(result: Unit?) {
@@ -60,9 +65,11 @@ class MainActivity : AppCompatActivity() {
             if (listTask.isEmpty()) {
                 main_recycler_view.visibility = View.GONE
                 main_no_task.visibility = View.VISIBLE
+                main_count_task_today.text = listTask.size.toString()
             } else {
                 main_recycler_view.visibility = View.VISIBLE
                 main_no_task.visibility = View.GONE
+                main_count_task_today.text = listTask.size.toString()
             }
         }
 
@@ -73,7 +80,51 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAllTasks() {
+    @SuppressLint("StaticFieldLeak")
+    internal inner class GetAllTaskSize : AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg p0: Void?) {
+            return getAllTask()
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            super.onPostExecute(result)
+            main_count_all_task.text = allListTask.size.toString()
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            main_count_all_task.text = "-"
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    internal inner class GetCompletedTask : AsyncTask<Void, Void, Unit>() {
+        override fun doInBackground(vararg p0: Void?) {
+            return getCompletedTask()
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            super.onPostExecute(result)
+            main_count_complete_task.text = allCompletedTask.size.toString()
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+            main_count_complete_task.text = "-"
+        }
+    }
+
+    private fun getCompletedTask() {
+        val database = Room.databaseBuilder(
+            applicationContext,
+            TaskDatabase::class.java,
+            "TaskDB"
+        ).build()
+
+        allCompletedTask = database.taskDao().getFinishedTasks()
+    }
+
+    private fun getTodayTasks() {
         val database = Room.databaseBuilder(
             applicationContext,
             TaskDatabase::class.java,
@@ -97,7 +148,18 @@ class MainActivity : AppCompatActivity() {
         Log.d("TodayDateStartValue = ", todayStart.timeInMillis.toString())
         Log.d("TodayDateEndValue = ", todayEnd.timeInMillis.toString())
 
-        listTask = database.taskDao().getTodayTasks(todayStart.timeInMillis.toString(), todayEnd.timeInMillis.toString())
+        listTask = database.taskDao()
+            .getTodayTasks(todayStart.timeInMillis.toString(), todayEnd.timeInMillis.toString())
+    }
+
+    private fun getAllTask() {
+        val database = Room.databaseBuilder(
+            applicationContext,
+            TaskDatabase::class.java,
+            "TaskDB"
+        ).build()
+
+        allListTask = database.taskDao().getAllTasks()
     }
 
     companion object {

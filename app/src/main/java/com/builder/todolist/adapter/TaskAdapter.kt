@@ -17,7 +17,7 @@ import java.util.*
 
 class TaskAdapter(private val context: Context?, private val listTask: List<TaskEntity>) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
-    lateinit var taskSelected: TaskEntity
+    private lateinit var taskSelected: TaskEntity
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvTitle: TextView = itemView.findViewById(R.id.card_title_tv)

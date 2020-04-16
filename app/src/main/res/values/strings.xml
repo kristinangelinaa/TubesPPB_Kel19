@@ -24,4 +24,12 @@
     <string name="edit_task">Edit Task</string>
     <string name="save">Save</string>
     <string name="mark_as_finished">Mark As Finished</string>
+    <string name="show_more">Show More</string>
+    <string name="all_task">All Task</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="you_have_3_task_today">You Have 3 Task Today</string>
+    <string name="today">Today</string>
+    <string name="completed_task">Completed Task</string>
+    <string name="empty">-</string>
+    <string name="check_image">Check Image</string>
 </resources>

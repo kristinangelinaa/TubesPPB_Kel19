@@ -6,8 +6,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_container"
-        app:cardCornerRadius="0dp"
-        android:layout_marginBottom="6dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="1dp"
+        android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -65,12 +66,13 @@
 
                 <ImageView
                     android:layout_margin="4dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_gravity="right"
                     android:id="@+id/card_img_done"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:src="@drawable/done_logo" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_check_black_24dp"
+                    android:contentDescription="@string/check_image" />
 
             </LinearLayout>
 

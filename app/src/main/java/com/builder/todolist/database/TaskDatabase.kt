@@ -15,7 +15,6 @@ abstract class TaskDatabase : RoomDatabase() {
     @Synchronized
     open fun getInstanceDatabase(context: Context?): TaskDatabase? {
         instance = Room.databaseBuilder(context!!.applicationContext, TaskDatabase::class.java, "TaskDB").build()
-
         return instance
     }
 }

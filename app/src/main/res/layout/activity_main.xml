@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F3F3F3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -24,44 +25,183 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/p_semibold"
-        android:text="@string/today_task"
+        android:text="@string/dashboard"
         android:textColor="#000"
         android:textSize="32sp"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/today_date_tv" />
 
+    <HorizontalScrollView
+        android:id="@+id/scrollView2"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_marginStart="24dp"
+        android:fillViewport="true"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/today_task">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_card_blue"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/p_light"
+                    android:paddingStart="20dp"
+                    android:text="@string/today_task"
+                    android:textColor="#FFF"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/main_count_task_today"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/p_medium"
+                    android:paddingStart="20dp"
+                    android:text="@string/empty"
+                    android:textColor="#FFF"
+                    android:textSize="50sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/bg_card_purple"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/p_light"
+                    android:paddingStart="20dp"
+                    android:text="@string/all_task"
+                    android:textColor="#FFF"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/main_count_all_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/p_medium"
+                    android:paddingStart="20dp"
+                    android:text="@string/empty"
+                    android:textColor="#FFF"
+                    android:textSize="50sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/bg_card_yellow"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/p_light"
+                    android:paddingStart="20dp"
+                    android:text="@string/completed_task"
+                    android:textColor="#FFF"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/main_count_complete_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/p_medium"
+                    android:paddingStart="20dp"
+                    android:text="@string/empty"
+                    android:textColor="#FFF"
+                    android:textSize="50sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/p_semibold"
+        android:text="@string/today_task"
+        android:textColor="#000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+
     <!-- Add RecyclerView Here -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="320dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginTop="20dp"
         android:scrollbars="vertical"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/today_task"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:listitem="@layout/task_card" />
 
 
     <TextView
         android:id="@+id/main_no_task"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/p_semibold"
-        android:text="@string/you_don_t_have_any_task_for_today"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/p_semibold"
+        android:text="@string/you_don_t_have_any_task_for_today"
         android:textColor="#1C000000"
         android:textSize="52sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_new_task"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/today_task" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.355" />
 
     <Button
         android:id="@+id/btn_new_task"

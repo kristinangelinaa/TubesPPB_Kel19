@@ -9,14 +9,20 @@ interface TaskDao {
     @Insert
     fun insertTask(task: TaskEntity)
 
-    @Query("SELECT * FROM tasks")
+    @Query("SELECT * FROM tasks ORDER BY isFinished ASC, date ASC, time ASC")
     fun getAllTasks(): List<TaskEntity>
 
     @Query("SELECT * FROM tasks WHERE date BETWEEN :start and :endOfDay ORDER BY  isFinished ASC, time ASC")
     fun getTodayTasks(start : String, endOfDay : String) : List<TaskEntity>
 
+    @Query("SELECT * FROM tasks WHERE isFinished = 1")
+    fun getFinishedTasks() : List<TaskEntity>
+
     @Delete
     fun deleteTask(task: TaskEntity)
+
+    @Delete
+    fun deleteDoneTask(tasks : List<TaskEntity>)
 
     @Update
     fun updateTask(task: TaskEntity)

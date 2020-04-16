@@ -3,9 +3,9 @@ package com.builder.todolist.activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.builder.todolist.MainActivity
 import com.builder.todolist.R
@@ -30,11 +30,11 @@ class NewTaskActivity : AppCompatActivity() {
         btn_create_task.setOnClickListener {
             if (isDataFill()) {
                 sendingDataToDatabase()
-                val toast = Toast.makeText(this, "Task Saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Task Saved", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                val toast = Toast.makeText(this, "Please Fill the Data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please Fill the Data", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -48,59 +48,62 @@ class NewTaskActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleCalendarButton(){
+    private fun handleCalendarButton() {
         val calendar = Calendar.getInstance()
 
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val date = calendar.get(Calendar.DATE)
 
-        val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener {
-                _, y, m, d ->
+        val datePickerDialog =
+            DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, y, m, d ->
 
-            val calendar1  = Calendar.getInstance()
-            calendar1.set(Calendar.YEAR, y)
-            calendar1.set(Calendar.MONTH, m)
-            calendar1.set(Calendar.DATE, d)
+                val calendar1 = Calendar.getInstance()
+                calendar1.set(Calendar.YEAR, y)
+                calendar1.set(Calendar.MONTH, m)
+                calendar1.set(Calendar.DATE, d)
 
-            val dataString = android.text.format.DateFormat.format("EEEE, dd MMM yyyy", calendar1)
-            create_date_tv.text = dataString
+                val dataString =
+                    android.text.format.DateFormat.format("EEEE, dd MMM yyyy", calendar1)
+                create_date_tv.text = dataString
 
-            dateSelected = calendar1
+                dateSelected = calendar1
 
-        }, year, month, date)
+            }, year, month, date)
 
         datePickerDialog.show()
     }
 
-    private fun handleTimeButton(){
+    private fun handleTimeButton() {
         val calendar = Calendar.getInstance()
 
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
 
-        val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener {
-                _, h, m ->
+        val timePickerDialog =
+            TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, h, m ->
 
-            val calendar1 = Calendar.getInstance()
-            calendar1.set(Calendar.HOUR_OF_DAY, h)
-            calendar1.set(Calendar.MINUTE, m)
+                val calendar1 = Calendar.getInstance()
+                calendar1.set(Calendar.HOUR_OF_DAY, h)
+                calendar1.set(Calendar.MINUTE, m)
 
-            val dataString = android.text.format.DateFormat.format("HH:mm", calendar1)
-            create_time_tv.text = dataString
+                val dataString = android.text.format.DateFormat.format("HH:mm", calendar1)
+                create_time_tv.text = dataString
 
-            timeSelected = calendar1
+                timeSelected = calendar1
 
-        }, hour, minute, true)
+            }, hour, minute, true)
 
         timePickerDialog.show()
     }
 
     private fun isDataFill(): Boolean {
-        return !(create_date_tv.text == getString(R.string.select_the_date) || create_time_tv.text == getString(R.string.select_the_time) || task_title_et.text.toString() == "")
+        return !(create_date_tv.text == getString(R.string.select_the_date) || create_time_tv.text == getString(
+            R.string.select_the_time
+        ) || task_title_et.text.toString() == "")
     }
 
-    private fun getTaskEntity() : TaskEntity {
+    private fun getTaskEntity(): TaskEntity {
         return TaskEntity(
             null,
             task_title_et.text.toString(),
