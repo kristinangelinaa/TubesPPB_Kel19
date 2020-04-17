@@ -10,6 +10,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.builder.todolist.activity.AllTaskActivity
+import com.builder.todolist.activity.CompletedTaskActivity
 import com.builder.todolist.activity.NewTaskActivity
 import com.builder.todolist.adapter.TaskAdapter
 import com.builder.todolist.database.TaskDatabase
@@ -42,8 +44,24 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, NewTaskActivity::class.java)
             startActivity(intent)
         }
+
+        main_all_task_card.setOnClickListener {
+            val intent = Intent(this, AllTaskActivity::class.java)
+            startActivity(intent)
+        }
+
+        main_complete_task_card.setOnClickListener {
+            val intent = Intent(this, CompletedTaskActivity::class.java)
+            startActivity(intent)
+        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        SetTaskData().execute()
+        GetAllTaskSize().execute()
+        GetCompletedTask().execute()
+    }
 
     private fun setTitleTime() {
         val dataTime = DateFormat.format("EEEE, dd MMM yyy", calendar)

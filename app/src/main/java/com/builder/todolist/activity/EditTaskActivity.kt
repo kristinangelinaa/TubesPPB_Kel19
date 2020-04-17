@@ -27,8 +27,7 @@ class EditTaskActivity : AppCompatActivity() {
         taskPackage()
 
         btn_back_edit.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         btn_save_task.setOnClickListener {

@@ -16,7 +16,7 @@
     <string name="no_task">No Task</string>
     <string name="you_don_t_have_any_task_for_today">You Don\'t \nHave Any \nTask For \nToday :)</string>
     <string name="note">Note</string>
-    <string name="add_some_notes_here">Add Some Notes Here</string>
+    <string name="add_some_notes_here">Add Some Notes Here (Optional)</string>
     <string name="back_logo">Back Logo</string>
     <string name="calendar_logo">Calendar Logo</string>
     <string name="clock_logo">Clock Logo</string>
@@ -32,4 +32,10 @@
     <string name="completed_task">Completed Task</string>
     <string name="empty">-</string>
     <string name="check_image">Check Image</string>
+    <string name="you_don_t_nhave_any_ntask">You Don\'t \nHave Any \nTask :)</string>
+    <string name="you_don_t_nany_ncompleted_ntask">You Don\'t\nAny\nCompleted\nTask :(</string>
+    <string name="are_you_sure_to_delete_all_completed_task">Are you sure to delete all completed task?</string>
+    <string name="delete_all_task">Delete All Task</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -10,6 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.CompletedTaskActivity"></activity>
+        <activity android:name=".activity.AllTaskActivity" />
         <activity android:name=".activity.EditTaskActivity" />
         <activity
             android:name=".activity.NewTaskActivity"

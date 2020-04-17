@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To Do List</string>
+    <string name="march_31_2020">31 Maret 2020</string>
+    <string name="today_task">Tugas Hari Ini</string>
+    <string name="add_new_task">Buat Tugas Baru</string>
+    <string name="create_new_task">Buat Tugas Baru</string>
+    <string name="task_title">Judul Tugas</string>
+    <string name="create_task">Buat Tugas</string>
+    <string name="title">Judul</string>
+    <string name="date">Tanggal</string>
+    <string name="sat_31_march_2001">Sab, 31 Maret 2001</string>
+    <string name="select_the_date">Pilih Tanggal</string>
+    <string name="select_the_time">Pilih Waktu</string>
+    <string name="time">Waktu</string>
+    <string name="send_notification">Kirim Notifikasi</string>
+    <string name="no_task">Tidak Ada Tugas</string>
+    <string name="you_don_t_have_any_task_for_today">Kamu Tidak Memiliki Tugas Hari Ini :)</string>
+    <string name="note">Catatan</string>
+    <string name="add_some_notes_here">Tambahkan Catatan (Opsional)</string>
+    <string name="back_logo">Logo Kembali</string>
+    <string name="calendar_logo">Logo Kalender</string>
+    <string name="clock_logo">Logo Jam</string>
+    <string name="upcoming_task">Tugas Akan Datang</string>
+    <string name="edit_task">Ubah Tugas</string>
+    <string name="save">Simpan</string>
+    <string name="mark_as_finished">Tandai Telah Selesai</string>
+    <string name="show_more">Selengkapnya</string>
+    <string name="all_task">Semua Tugas</string>
+    <string name="dashboard">Beranda</string>
+    <string name="you_have_3_task_today">Kamu Memilki 3 Tugas Hari Ini</string>
+    <string name="today">Hari Ini</string>
+    <string name="completed_task">Tugas Terselesaikan</string>
+    <string name="empty">-</string>
+    <string name="check_image">Gambar Centang</string>
+    <string name="you_don_t_nhave_any_ntask">Kamu Tidak Memiliki Tugas :)</string>
+    <string name="you_don_t_nany_ncompleted_ntask">Belum Ada Tugas \\nTerselesaikan \\n:(</string>
+    <string name="are_you_sure_to_delete_all_completed_task">Anda ingin menghapus seluruh tugas yang telah terselesaikan?</string>
+    <string name="delete_all_task">Hapus Seluruh Tugas</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+</resources>

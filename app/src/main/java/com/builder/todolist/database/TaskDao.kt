@@ -18,6 +18,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE isFinished = 1")
     fun getFinishedTasks() : List<TaskEntity>
 
+    @Query("SELECT * FROM tasks WHERE isFinished = 0")
+    fun getAllUnfinishedTask() : List<TaskEntity>
+
     @Delete
     fun deleteTask(task: TaskEntity)
 
