@@ -5,15 +5,20 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.room.Room
 import com.builder.todolist.MainActivity
 import com.builder.todolist.MainActivity.Companion.EXTRA_DATA
 import com.builder.todolist.R
 import com.builder.todolist.database.TaskDatabase
 import com.builder.todolist.model.TaskEntity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_edit_task.*
+import kotlinx.android.synthetic.main.activity_new_task.*
 import java.util.*
 
 class EditTaskActivity : AppCompatActivity() {
@@ -31,32 +36,87 @@ class EditTaskActivity : AppCompatActivity() {
         }
 
         btn_save_task.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            if (isDataFill()) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
 
-            Thread(Runnable {
-                updateTask()
-            }).start()
+                Thread(Runnable {
+                    updateTask()
+                }).start()
+            } else {
+                textFieldState()
+            }
         }
 
         edit_img_delete.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            val alertDialog= MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.delete_all_task))
+                .setMessage(getString(R.string.are_you_sure_to_delete_all_completed_task))
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
 
-            Toast.makeText(this, "Task Deleted", Toast.LENGTH_SHORT).show()
+                    Thread(Runnable {
+                        deleteTask()
+                    }).start()
 
-            Thread(Runnable {
-                deleteTask()
-            }).start()
+                    Toast.makeText(this, "Task Deleted", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton(getString(R.string.no), null)
+                .show()
+
+            val title = alertDialog.window!!.findViewById<TextView>(R.id.alertTitle)
+            val message = alertDialog.window!!.findViewById<TextView>(android.R.id.message)
+            val button1 = alertDialog.window!!.findViewById<Button>(android.R.id.button1)
+            val button2 = alertDialog.window!!.findViewById<Button>(android.R.id.button2)
+
+            val typeface1 = ResourcesCompat.getFont(this, R.font.p_regular)
+            val typeface2 = ResourcesCompat.getFont(this, R.font.p_semibold)
+
+            title.typeface = typeface2
+            message.typeface = typeface1
+            button1.typeface = typeface2
+            button2.typeface = typeface2
+
         }
 
-        linearLayout_select_date_edit.setOnClickListener {
+        edit_title_et.editText!!.setOnClickListener {
+            edit_title_et.error = null
+        }
+
+        edit_date_picker_et.editText!!.setOnClickListener {
             handleCalendarButton()
+            edit_date_picker_et.error = null
         }
 
-        linearLayout_select_time_edit.setOnClickListener {
+        edit_time_picker_et.editText!!.setOnClickListener {
             handleTimeButton()
+            edit_time_picker_et.error = null
+        }
+    }
+
+    private fun isDataFill(): Boolean {
+        return !(task_title_et.editText!!.text.isEmpty() || new_date_picker_et.editText!!.text.isEmpty() || new_time_picker_et.editText!!.text.isEmpty())
+    }
+
+    private fun textFieldState() {
+        if (edit_title_et.editText!!.text.isEmpty()) {
+            edit_title_et.error = getString(R.string.no_title_error_msg)
+        } else {
+            edit_title_et.error = null
+        }
+
+        if (edit_date_picker_et.editText!!.text.isEmpty()) {
+            edit_date_picker_et.error = getString(R.string.no_date_error_msg)
+        } else {
+            edit_date_picker_et.error = null
+        }
+
+        if (edit_time_picker_et.editText!!.text.isEmpty()) {
+            edit_time_picker_et.error = getString(R.string.no_time_error_msg)
+        } else {
+            edit_time_picker_et.error = null
         }
     }
 
@@ -75,10 +135,10 @@ class EditTaskActivity : AppCompatActivity() {
         val dateString = DateFormat.format("EEEE, dd MMM yyyy", date)
         val timeString = DateFormat.format("HH:mm", time)
 
-        edit_title_et.setText(taskData.title)
-        edit_date_tv.text = dateString
-        edit_time_tv.text = timeString
-        edit_note_et.setText(taskData.note)
+        edit_title_et.editText!!.setText(taskData.title)
+        edit_date_picker_et.editText!!.setText(dateString)
+        edit_time_picker_et.editText!!.setText(timeString)
+        edit_note_et.editText!!.setText(taskData.note)
         edit_checkbox.isChecked = taskData.isFinished
 
     }
@@ -108,10 +168,10 @@ class EditTaskActivity : AppCompatActivity() {
 
         return TaskEntity(
             taskData?.id,
-            edit_title_et.text.toString(),
+            edit_title_et.editText!!.text.toString(),
             dateSelected.timeInMillis.toString(),
             timeSelected.timeInMillis.toString(),
-            edit_note_et.text.toString(),
+            edit_note_et.editText?.text.toString(),
             edit_checkbox.isChecked
         )
     }
@@ -132,7 +192,7 @@ class EditTaskActivity : AppCompatActivity() {
                 calendar1.set(Calendar.DATE, d)
 
                 val dataString = DateFormat.format("EEEE, dd MMM yyyy", calendar1)
-                edit_date_tv.text = dataString
+                edit_date_picker_et.editText!!.setText(dataString)
 
                 dateSelected = calendar1
 
@@ -155,7 +215,7 @@ class EditTaskActivity : AppCompatActivity() {
                 calendar1.set(Calendar.MINUTE, m)
 
                 val dataString = DateFormat.format("HH:mm", calendar1)
-                edit_time_tv.text = dataString
+                edit_time_picker_et.editText!!.setText(dataString)
 
                 timeSelected = calendar1
 

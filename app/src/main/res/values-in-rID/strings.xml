@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">To Do List</string>
+    <string name="app_name">Do Reminder</string>
     <string name="march_31_2020">31 Maret 2020</string>
     <string name="today_task">Tugas Hari Ini</string>
     <string name="add_new_task">Buat Tugas Baru</string>
@@ -34,9 +34,23 @@
     <string name="empty">-</string>
     <string name="check_image">Gambar Centang</string>
     <string name="you_don_t_nhave_any_ntask">Kamu Tidak Memiliki Tugas :)</string>
-    <string name="you_don_t_nany_ncompleted_ntask">Belum Ada Tugas \\nTerselesaikan \\n:(</string>
-    <string name="are_you_sure_to_delete_all_completed_task">Anda ingin menghapus seluruh tugas yang telah terselesaikan?</string>
-    <string name="delete_all_task">Hapus Seluruh Tugas</string>
-    <string name="yes">Ya</string>
-    <string name="no">Tidak</string>
+    <string name="you_don_t_nany_ncompleted_ntask">Belum Ada Tugas \nTerselesaikan \n:(</string>
+    <string name="are_you_sure_to_delete_all_completed_task">Ini akan menghapus seluruh tugas yang telah kamu simpan dan tidak dapat dikembalikan.</string>
+    <string name="delete_all_task">Hapus Seluruh Tugas?</string>
+    <string name="yes">Hapus</string>
+    <string name="no">Batalkan</string>
+    <string name="settings">Pengaturan</string>
+    <string name="task_notification">Notifikasi Tugas</string>
+    <string name="daily_notification">Notifikasi Harian</string>
+    <string name="notification">Notifikasi</string>
+    <string name="daily_notification_message">Hai! Siap merencanakan harimu? Klik untuk membuka Do Reminder</string>
+    <string name="past">Berlalu</string>
+    <string name="upcoming">Akan Datang</string>
+    <string name="no_task_nwas_passed">Tidak Ada \nTugas Terlewat</string>
+    <string name="no_task_nhas_been_nmissed">Tidak Ada \nTugas Terlewat</string>
+    <string name="no_task_nfor_today">Tidak Ada \nTugas Hari \nIni</string>
+    <string name="no_task_nwill_come">Tidak Ada \nTugas yang \nAkan Datang</string>
+    <string name="no_title_error_msg">Error: Tolong Tambahkan Judul</string>
+    <string name="no_date_error_msg">Error: Tolong Tambahkan Tanggal</string>
+    <string name="no_time_error_msg">Error: Tolong Tambahkan Waktu</string>
 </resources>

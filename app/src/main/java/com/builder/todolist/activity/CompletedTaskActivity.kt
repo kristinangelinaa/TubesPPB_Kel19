@@ -5,8 +5,11 @@ import android.content.DialogInterface
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.builder.todolist.R
@@ -33,7 +36,7 @@ class CompletedTaskActivity : AppCompatActivity() {
         }
 
         complete_img_delete.setOnClickListener {
-            AlertDialog.Builder(this)
+            val alertDialog= AlertDialog.Builder(this)
                 .setTitle(getString(R.string.delete_all_task))
                 .setMessage(getString(R.string.are_you_sure_to_delete_all_completed_task))
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
@@ -42,6 +45,19 @@ class CompletedTaskActivity : AppCompatActivity() {
                 }
                 .setNegativeButton(getString(R.string.no), null)
                 .show()
+
+            val title = alertDialog.window!!.findViewById<TextView>(R.id.alertTitle)
+            val message = alertDialog.window!!.findViewById<TextView>(android.R.id.message)
+            val button1 = alertDialog.window!!.findViewById<Button>(android.R.id.button1)
+            val button2 = alertDialog.window!!.findViewById<Button>(android.R.id.button2)
+
+            val typeface1 = ResourcesCompat.getFont(this, R.font.p_regular)
+            val typeface2 = ResourcesCompat.getFont(this, R.font.p_semibold)
+
+            title.typeface = typeface2
+            message.typeface = typeface1
+            button1.typeface = typeface2
+            button2.typeface = typeface2
         }
     }
 
@@ -124,6 +140,6 @@ class CompletedTaskActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        database.taskDao().deleteDoneTask(allListTask)
+        database.taskDao().deleteTasks(allListTask)
     }
 }

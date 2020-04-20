@@ -59,8 +59,6 @@
         android:id="@+id/completed_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:scrollbars="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

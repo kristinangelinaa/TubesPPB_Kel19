@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.NewTaskActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,198 +16,140 @@
             android:layout_height="34dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:contentDescription="@string/back_logo"
+            android:src="@drawable/ic_close_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_logo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/new_task_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/p_semibold"
             android:layout_marginStart="24dp"
+            android:fontFamily="@font/p_semibold"
             android:text="@string/create_new_task"
             android:textColor="#000"
             android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_back" />
 
-        <TextView
-            android:id="@+id/_create_title_task"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/p_medium"
-            android:text="@string/title"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_task_tv" />
 
-        <EditText
+        <!--        Title-->
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/task_title_et"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/p_regular"
-            android:hint="@string/task_title"
-            android:maxLines="2"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:hint="@string/title"
+            app:helperText="*Required"
             app:layout_constraintEnd_toEndOf="parent"
+            app:errorEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/_create_title_task"
-            android:inputType="text" />
+            app:layout_constraintTop_toBottomOf="@+id/new_task_tv">
 
-        <TextView
-            android:id="@+id/create_date_task"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/p_medium"
-            android:text="@string/date"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:textColor="#000"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_title_et" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_select_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_date_task">
-
-            <ImageView
-                android:id="@+id/btn_calendar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_weight="2"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_date_range_black_24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
-                android:contentDescription="@string/calendar_logo" />
-
-            <TextView
-                android:id="@+id/create_date_tv"
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:background="@drawable/bg_text_date"
-                android:padding="8dp"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:layout_marginStart="38dp"
-                android:fontFamily="@font/p_light"
-                android:text="@string/select_the_date"
-                android:textColor="#000"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/btn_calendar"
-                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
-                tools:ignore="RtlSymmetry" />
+                android:fontFamily="@font/p_regular"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/new_date_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_title_et">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_date_picker_et"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="*Required"
+                app:startIconDrawable="@drawable/ic_date_range_black_24dp"
+                android:hint="@string/select_the_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/p_regular"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/p_medium"
-            android:text="@string/time"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="24dp"
-            android:textColor="#000"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_select_date" />
 
         <LinearLayout
-            android:id="@+id/linearLayout_select_time"
+            android:id="@+id/new_time_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_time">
+            app:layout_constraintTop_toBottomOf="@+id/new_date_linear_layout">
 
-            <ImageView
-                android:id="@+id/btn_time"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_weight="2"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_access_time_black_24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
-                android:contentDescription="@string/clock_logo" />
-
-            <TextView
-                android:id="@+id/create_time_tv"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_time_picker_et"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:background="@drawable/bg_text_date"
-                android:padding="8dp"
-                android:paddingStart="20dp"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/p_light"
-                android:text="@string/select_the_time"
-                android:layout_marginStart="38dp"
-                android:textColor="#000"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/btn_calendar"
-                app:layout_constraintTop_toBottomOf="@+id/create_date_task"
-                tools:ignore="RtlSymmetry" />
+                app:helperText="*Required"
+                app:startIconDrawable="@drawable/ic_access_time_black_24dp"
+                android:hint="@string/select_the_time">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/p_regular"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/notes_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/p_medium"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="24dp"
-            android:textSize="16sp"
-            android:text="@string/note"
-            android:textColor="#000"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_select_time" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_note_et"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notes_text"
+            app:startIconDrawable="@drawable/ic_add_white_24dp"
             android:hint="@string/add_some_notes_here"
-            android:fontFamily="@font/p_regular"
-            android:inputType="text" />
+            app:layout_constraintTop_toBottomOf="@+id/new_time_linear_layout">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/p_regular"
+                android:inputType="textMultiLine" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_create_task"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="42dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_button"
@@ -218,6 +161,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_note_et" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

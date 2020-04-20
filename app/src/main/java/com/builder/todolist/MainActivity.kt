@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.builder.todolist.activity.AllTaskActivity
 import com.builder.todolist.activity.CompletedTaskActivity
 import com.builder.todolist.activity.NewTaskActivity
+import com.builder.todolist.activity.SettingActivity
 import com.builder.todolist.adapter.TaskAdapter
 import com.builder.todolist.database.TaskDatabase
 import com.builder.todolist.model.TaskEntity
@@ -53,6 +55,16 @@ class MainActivity : AppCompatActivity() {
         main_complete_task_card.setOnClickListener {
             val intent = Intent(this, CompletedTaskActivity::class.java)
             startActivity(intent)
+        }
+
+        main_btn_setting.setOnClickListener {
+            Intent(this, SettingActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
+
+        main_today_task_card.setOnClickListener {
+            Toast.makeText(this, "This is your Today Task", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -161,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         todayEnd.set(Calendar.MONTH, calendar.get(Calendar.MONTH))
         todayEnd.set(Calendar.YEAR, calendar.get(Calendar.YEAR))
         todayEnd.set(Calendar.HOUR_OF_DAY, 23)
-        todayEnd.set(Calendar.MINUTE, 0)
+        todayEnd.set(Calendar.MINUTE, 59)
 
         Log.d("TodayDateStartValue = ", todayStart.timeInMillis.toString())
         Log.d("TodayDateEndValue = ", todayEnd.timeInMillis.toString())
@@ -177,7 +189,7 @@ class MainActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        allListTask = database.taskDao().getAllTasks()
+        allListTask = database.taskDao().getAllUnfinishedTask()
     }
 
     companion object {

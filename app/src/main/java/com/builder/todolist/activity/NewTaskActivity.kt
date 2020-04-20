@@ -11,6 +11,8 @@ import com.builder.todolist.MainActivity
 import com.builder.todolist.R
 import com.builder.todolist.database.TaskDatabase
 import com.builder.todolist.model.TaskEntity
+import com.google.android.material.datepicker.MaterialDatePicker
+import kotlinx.android.synthetic.main.activity_edit_task.*
 import kotlinx.android.synthetic.main.activity_new_task.*
 import java.util.*
 
@@ -35,16 +37,42 @@ class NewTaskActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please Fill the Data", Toast.LENGTH_SHORT).show()
+                textFieldState()
             }
         }
 
-
-        linearLayout_select_date.setOnClickListener {
-            handleCalendarButton()
+        task_title_et.editText!!.setOnClickListener {
+            task_title_et.error = null
         }
 
-        linearLayout_select_time.setOnClickListener {
+        new_date_picker_et.editText!!.setOnClickListener {
+            handleCalendarButton()
+            new_date_picker_et.error = null
+        }
+
+        new_time_picker_et.editText!!.setOnClickListener {
             handleTimeButton()
+            new_time_picker_et.error = null
+        }
+    }
+
+    private fun textFieldState() {
+        if (task_title_et.editText!!.text.isEmpty()) {
+            task_title_et.error = getString(R.string.no_title_error_msg)
+        } else {
+            task_title_et.error = null
+        }
+
+        if (new_date_picker_et.editText!!.text.isEmpty()) {
+            new_date_picker_et.error = getString(R.string.no_date_error_msg)
+        } else {
+            new_date_picker_et.error = null
+        }
+
+        if (new_time_picker_et.editText!!.text.isEmpty()) {
+            new_time_picker_et.error = getString(R.string.no_time_error_msg)
+        } else {
+            new_time_picker_et.error = null
         }
     }
 
@@ -65,7 +93,7 @@ class NewTaskActivity : AppCompatActivity() {
 
                 val dataString =
                     android.text.format.DateFormat.format("EEEE, dd MMM yyyy", calendar1)
-                create_date_tv.text = dataString
+                new_date_picker_et.editText!!.setText(dataString)
 
                 dateSelected = calendar1
 
@@ -88,7 +116,7 @@ class NewTaskActivity : AppCompatActivity() {
                 calendar1.set(Calendar.MINUTE, m)
 
                 val dataString = android.text.format.DateFormat.format("HH:mm", calendar1)
-                create_time_tv.text = dataString
+                new_time_picker_et.editText!!.setText(dataString)
 
                 timeSelected = calendar1
 
@@ -98,18 +126,16 @@ class NewTaskActivity : AppCompatActivity() {
     }
 
     private fun isDataFill(): Boolean {
-        return !(create_date_tv.text == getString(R.string.select_the_date) || create_time_tv.text == getString(
-            R.string.select_the_time
-        ) || task_title_et.text.toString() == "")
+        return !(edit_title_et.editText!!.text.isEmpty() || edit_date_picker_et.editText!!.text.isEmpty() || edit_time_picker_et.editText!!.text.isEmpty())
     }
 
     private fun getTaskEntity(): TaskEntity {
         return TaskEntity(
             null,
-            task_title_et.text.toString(),
+            task_title_et.editText!!.text.toString(),
             dateSelected.timeInMillis.toString(),
             timeSelected.timeInMillis.toString(),
-            create_note_et.text.toString(),
+            create_note_et.editText!!.text.toString(),
             isFinished = false
         )
     }

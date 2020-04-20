@@ -21,11 +21,16 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE isFinished = 0")
     fun getAllUnfinishedTask() : List<TaskEntity>
 
+    @Query("SELECT * FROM tasks WHERE date < :today ORDER BY date ASC, time ASC")
+    fun getAllMissedTask(today: String) : List<TaskEntity>
+
+    @Query("SELECT * FROM tasks WHERE date > :today ORDER BY date ASC, time ASC")
+    fun getAllUpcomingTask(today: String) : List<TaskEntity>
     @Delete
     fun deleteTask(task: TaskEntity)
 
     @Delete
-    fun deleteDoneTask(tasks : List<TaskEntity>)
+    fun deleteTasks(tasks : List<TaskEntity>)
 
     @Update
     fun updateTask(task: TaskEntity)
