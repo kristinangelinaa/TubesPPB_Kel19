@@ -126,7 +126,7 @@ class NewTaskActivity : AppCompatActivity() {
     }
 
     private fun isDataFill(): Boolean {
-        return !(edit_title_et.editText!!.text.isEmpty() || edit_date_picker_et.editText!!.text.isEmpty() || edit_time_picker_et.editText!!.text.isEmpty())
+        return !(task_title_et.editText!!.text.isEmpty() || new_date_picker_et.editText!!.text.isEmpty() || new_time_picker_et.editText!!.text.isEmpty())
     }
 
     private fun getTaskEntity(): TaskEntity {

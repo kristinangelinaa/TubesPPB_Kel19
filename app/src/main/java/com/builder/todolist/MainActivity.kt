@@ -23,6 +23,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listTask: List<TaskEntity>
+    private lateinit var listTaskToday: List<TaskEntity>
     private lateinit var allListTask: List<TaskEntity>
     private lateinit var allCompletedTask: List<TaskEntity>
 
@@ -95,11 +96,11 @@ class MainActivity : AppCompatActivity() {
             if (listTask.isEmpty()) {
                 main_recycler_view.visibility = View.GONE
                 main_no_task.visibility = View.VISIBLE
-                main_count_task_today.text = listTask.size.toString()
+                main_count_task_today.text = listTaskToday.size.toString()
             } else {
                 main_recycler_view.visibility = View.VISIBLE
                 main_no_task.visibility = View.GONE
-                main_count_task_today.text = listTask.size.toString()
+                main_count_task_today.text = listTaskToday.size.toString()
             }
         }
 
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            main_count_all_task.text = "-"
+            main_count_all_task.text = "0"
         }
     }
 
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            main_count_complete_task.text = "-"
+            main_count_complete_task.text = "0"
         }
     }
 
@@ -180,6 +181,11 @@ class MainActivity : AppCompatActivity() {
 
         listTask = database.taskDao()
             .getTodayTasks(todayStart.timeInMillis.toString(), todayEnd.timeInMillis.toString())
+
+        listTaskToday = database.taskDao().getTodayCompletedTasks(
+            todayStart.timeInMillis.toString(),
+            todayEnd.timeInMillis.toString()
+        )
     }
 
     private fun getAllTask() {

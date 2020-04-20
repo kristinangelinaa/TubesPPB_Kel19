@@ -16,6 +16,7 @@ import com.builder.todolist.R
 import com.builder.todolist.adapter.TaskAdapter
 import com.builder.todolist.database.TaskDatabase
 import com.builder.todolist.model.TaskEntity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_completed_task.*
 
 class CompletedTaskActivity : AppCompatActivity() {
@@ -36,8 +37,8 @@ class CompletedTaskActivity : AppCompatActivity() {
         }
 
         complete_img_delete.setOnClickListener {
-            val alertDialog= AlertDialog.Builder(this)
-                .setTitle(getString(R.string.delete_all_task))
+            val alertDialog = MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.delete_completed_task))
                 .setMessage(getString(R.string.are_you_sure_to_delete_all_completed_task))
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     DeleteAllData().execute()

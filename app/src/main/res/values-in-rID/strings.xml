@@ -53,4 +53,8 @@
     <string name="no_title_error_msg">Error: Tolong Tambahkan Judul</string>
     <string name="no_date_error_msg">Error: Tolong Tambahkan Tanggal</string>
     <string name="no_time_error_msg">Error: Tolong Tambahkan Waktu</string>
+    <string name="delete_completed_task">Hapus Tugas Selesai?</string>
+    <string name="delete_this_task">Hapus Tugas Ini?</string>
+    <string name="this_will_delete_your_task_forever">Ini akan menghapus tugas kamu dan tidak dapat dikembalikan.</string>
+    <string name="task_deleted">Tugas Dihapus.</string>
 </resources>

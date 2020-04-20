@@ -50,8 +50,8 @@ class EditTaskActivity : AppCompatActivity() {
 
         edit_img_delete.setOnClickListener {
             val alertDialog= MaterialAlertDialogBuilder(this)
-                .setTitle(getString(R.string.delete_all_task))
-                .setMessage(getString(R.string.are_you_sure_to_delete_all_completed_task))
+                .setTitle(getString(R.string.delete_this_task))
+                .setMessage(getString(R.string.this_will_delete_your_task_forever))
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -61,7 +61,7 @@ class EditTaskActivity : AppCompatActivity() {
                         deleteTask()
                     }).start()
 
-                    Toast.makeText(this, "Task Deleted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.task_deleted), Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton(getString(R.string.no), null)
                 .show()
@@ -97,7 +97,7 @@ class EditTaskActivity : AppCompatActivity() {
     }
 
     private fun isDataFill(): Boolean {
-        return !(task_title_et.editText!!.text.isEmpty() || new_date_picker_et.editText!!.text.isEmpty() || new_time_picker_et.editText!!.text.isEmpty())
+        return !(edit_title_et.editText!!.text.isEmpty() || edit_date_picker_et.editText!!.text.isEmpty() || edit_time_picker_et.editText!!.text.isEmpty())
     }
 
     private fun textFieldState() {

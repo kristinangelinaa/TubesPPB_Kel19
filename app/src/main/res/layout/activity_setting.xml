@@ -94,7 +94,7 @@
                 android:textColor="#000"
                 android:textSize="16sp" />
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/setting_daily_notification_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

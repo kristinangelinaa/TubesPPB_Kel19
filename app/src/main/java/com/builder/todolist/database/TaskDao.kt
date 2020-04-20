@@ -15,6 +15,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE date BETWEEN :start and :endOfDay ORDER BY  isFinished ASC, time ASC")
     fun getTodayTasks(start : String, endOfDay : String) : List<TaskEntity>
 
+    @Query("SELECT * FROM tasks WHERE date BETWEEN :start and :endOfDay AND isFinished = 0")
+    fun getTodayCompletedTasks(start : String, endOfDay : String) : List<TaskEntity>
+
     @Query("SELECT * FROM tasks WHERE isFinished = 1")
     fun getFinishedTasks() : List<TaskEntity>
 

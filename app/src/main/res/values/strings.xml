@@ -54,4 +54,8 @@
     <string name="no_title_error_msg">Error: Please Enter A Title</string>
     <string name="no_date_error_msg">Error: Please Add Date</string>
     <string name="no_time_error_msg">Error: Please Add Time</string>
+    <string name="delete_completed_task">Delete Completed Task?</string>
+    <string name="delete_this_task">Delete This Task?</string>
+    <string name="this_will_delete_your_task_forever">This will delete your task and cannot be returned.</string>
+    <string name="task_deleted">Task Deleted.</string>
 </resources>
