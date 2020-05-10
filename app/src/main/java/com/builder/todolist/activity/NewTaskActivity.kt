@@ -25,8 +25,7 @@ class NewTaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_task)
 
         btn_back.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         btn_create_task.setOnClickListener {

@@ -38,6 +38,7 @@ class EditTaskActivity : AppCompatActivity() {
         btn_save_task.setOnClickListener {
             if (isDataFill()) {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
 
                 Thread(Runnable {

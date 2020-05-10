@@ -10,7 +10,16 @@
         android:roundIcon="@mipmap/logo_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity
+            android:name=".activity.SettingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activity.CompletedTaskActivity"
             android:screenOrientation="portrait"
@@ -25,8 +34,10 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +46,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".notification.DailyNotification"/>
+        <receiver android:name=".notification.DailyNotification" />
     </application>
 
 </manifest>
