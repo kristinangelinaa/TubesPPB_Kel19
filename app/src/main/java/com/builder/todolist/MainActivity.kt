@@ -23,9 +23,9 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listTask: List<TaskEntity>
-    private lateinit var listTaskToday: List<TaskEntity>
-    private lateinit var allListTask: List<TaskEntity>
-    private lateinit var allCompletedTask: List<TaskEntity>
+    private var listTaskToday: Int = 0
+    private var allListTask: Int = 0
+    private var allCompletedTask: Int = 0
 
     private val calendar = Calendar.getInstance()
 
@@ -96,11 +96,11 @@ class MainActivity : AppCompatActivity() {
             if (listTask.isEmpty()) {
                 main_recycler_view.visibility = View.GONE
                 main_no_task.visibility = View.VISIBLE
-                main_count_task_today.text = listTaskToday.size.toString()
+                main_count_task_today.text = listTaskToday.toString()
             } else {
                 main_recycler_view.visibility = View.VISIBLE
                 main_no_task.visibility = View.GONE
-                main_count_task_today.text = listTaskToday.size.toString()
+                main_count_task_today.text = listTaskToday.toString()
             }
         }
 
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: Unit?) {
             super.onPostExecute(result)
-            main_count_all_task.text = allListTask.size.toString()
+            main_count_all_task.text = allListTask.toString()
         }
 
         override fun onPreExecute() {
@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: Unit?) {
             super.onPostExecute(result)
-            main_count_complete_task.text = allCompletedTask.size.toString()
+            main_count_complete_task.text = allCompletedTask.toString()
         }
 
         override fun onPreExecute() {
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        allCompletedTask = database.taskDao().getFinishedTasks()
+        allCompletedTask = database.taskDao().getFinishedTasksSize()
     }
 
     private fun getTodayTasks() {
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
         listTask = database.taskDao()
             .getTodayTasks(todayStart.timeInMillis.toString(), todayEnd.timeInMillis.toString())
 
-        listTaskToday = database.taskDao().getTodayCompletedTasks(
+        listTaskToday = database.taskDao().getTodayTasksSize(
             todayStart.timeInMillis.toString(),
             todayEnd.timeInMillis.toString()
         )
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             "TaskDB"
         ).build()
 
-        allListTask = database.taskDao().getAllUnfinishedTask()
+        allListTask = database.taskDao().getAllTasksSize()
     }
 
     companion object {

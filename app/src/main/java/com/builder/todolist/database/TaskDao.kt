@@ -38,4 +38,13 @@ interface TaskDao {
     @Update
     fun updateTask(task: TaskEntity)
 
+    @Query("SELECT COUNT(id) FROM tasks WHERE isFinished = 0")
+    fun getAllTasksSize(): Int
+
+    @Query ("SELECT COUNT(id) FROM tasks WHERE date BETWEEN :start and :endOfDay AND isFinished = 0")
+    fun getTodayTasksSize(start : String, endOfDay : String): Int
+
+    @Query ("SELECT COUNT(id) FROM tasks WHERE isFinished = 1")
+    fun getFinishedTasksSize(): Int
+
 }

@@ -1,13 +1,11 @@
 package com.builder.todolist.activity
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +47,7 @@ class AllTaskActivity : AppCompatActivity() {
         }
 
         all_img_delete.setOnClickListener {
-            val alertDialog= MaterialAlertDialogBuilder(this)
+            val alertDialog = MaterialAlertDialogBuilder(this)
                 .setTitle(getString(R.string.delete_all_task))
                 .setMessage(getString(R.string.are_you_sure_to_delete_all_completed_task))
                 .setPositiveButton(getString(R.string.yes)) { _, _ ->
@@ -96,30 +94,24 @@ class AllTaskActivity : AppCompatActivity() {
             // List Task Today
             if (allListTaskToday.isEmpty()) {
                 all_task_recycler_view_today.visibility = View.GONE
-                all_no_task_today.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_today.visibility = View.VISIBLE
-                all_no_task_today.visibility = View.GONE
             }
 
 
             // List Task Passed
             if (allListTaskPassed.isEmpty()) {
                 all_task_recycler_view_passed.visibility = View.GONE
-                all_no_task_past.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_passed.visibility = View.VISIBLE
-                all_no_task_past.visibility = View.GONE
             }
 
 
             // List Task Upcoming
             if (allListTaskUpcoming.isEmpty()) {
                 all_task_recycler_view_upcoming.visibility = View.GONE
-                all_no_task_upcoming.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_upcoming.visibility = View.VISIBLE
-                all_no_task_upcoming.visibility = View.GONE
             }
 
             // Show or Gone Delete Button
@@ -132,9 +124,6 @@ class AllTaskActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            all_no_task_past.visibility = View.VISIBLE
-            all_no_task_today.visibility = View.VISIBLE
-            all_no_task_upcoming.visibility = View.VISIBLE
             all_task_recycler_view_today.visibility = View.GONE
             all_task_recycler_view_passed.visibility = View.GONE
             all_task_recycler_view_upcoming.visibility = View.GONE
@@ -164,30 +153,24 @@ class AllTaskActivity : AppCompatActivity() {
             // List Task Today
             if (allListTaskToday.isEmpty()) {
                 all_task_recycler_view_today.visibility = View.INVISIBLE
-                all_no_task_today.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_today.visibility = View.VISIBLE
-                all_no_task_today.visibility = View.GONE
             }
 
 
             // List Task Passed
             if (allListTaskPassed.isEmpty()) {
                 all_task_recycler_view_passed.visibility = View.INVISIBLE
-                all_no_task_past.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_passed.visibility = View.VISIBLE
-                all_no_task_past.visibility = View.GONE
             }
 
 
             // List Task Upcoming
             if (allListTaskUpcoming.isEmpty()) {
                 all_task_recycler_view_upcoming.visibility = View.INVISIBLE
-                all_no_task_upcoming.visibility = View.VISIBLE
             } else {
                 all_task_recycler_view_upcoming.visibility = View.VISIBLE
-                all_no_task_upcoming.visibility = View.GONE
             }
 
             // Show or Gone Delete Button
@@ -200,9 +183,6 @@ class AllTaskActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            all_no_task_past.visibility = View.VISIBLE
-            all_no_task_today.visibility = View.VISIBLE
-            all_no_task_upcoming.visibility = View.VISIBLE
             all_task_recycler_view_today.visibility = View.INVISIBLE
             all_task_recycler_view_passed.visibility = View.INVISIBLE
             all_task_recycler_view_upcoming.visibility = View.INVISIBLE

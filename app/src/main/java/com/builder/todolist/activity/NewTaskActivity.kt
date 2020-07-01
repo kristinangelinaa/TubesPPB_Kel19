@@ -33,6 +33,7 @@ class NewTaskActivity : AppCompatActivity() {
                 sendingDataToDatabase()
                 Toast.makeText(this, "Task Saved", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please Fill the Data", Toast.LENGTH_SHORT).show()
